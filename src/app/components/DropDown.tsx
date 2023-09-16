@@ -16,13 +16,13 @@ function DropDown({ data, name }: { data: PageProps[]; name: string }) {
   return (
     <div className="pr-5 ">
       <div
-        className="flex justify-between items-center text-[#828282]  
+        className="flex justify-between items-center !text-[#828282]   dark:!text-white 
         hover:text-[#323232] cursor-pointer mr-7"
         onClick={() => {
           setToggle(!toggle);
         }}
       >
-        <h1 className="font-semibold text-xl">{name}</h1>
+        <h1 className="font-semibold text-[16px] ">{name}</h1>
 
         {toggle ? (
           <Image
@@ -30,7 +30,7 @@ function DropDown({ data, name }: { data: PageProps[]; name: string }) {
             width={100}
             height={100}
             alt="down"
-            className="ml-2 stroke-[2px] w-[14px] "
+            className="ml-2 stroke-[2px] w-[12px] "
           />
         ) : (
           <Image
@@ -38,7 +38,7 @@ function DropDown({ data, name }: { data: PageProps[]; name: string }) {
             width={100}
             height={100}
             alt="down"
-            className="ml-2 stroke-[2px] w-[14px] "
+            className="ml-2 stroke-[2px] w-[12px]  "
           />
         )}
       </div>
@@ -57,10 +57,10 @@ function DropDown({ data, name }: { data: PageProps[]; name: string }) {
                   alt={item.alt}
                   width={30}
                   height={30}
-                  className=" stroke-[2px] w-[17px] "
+                  className=" stroke-[2px] w-[17px]  "
                 />
                 <span
-                  className="text-[#828282] 
+                  className="text-[#828282]  dark:text-[white]
                 hover:text-[#101010] font-[400] text-[14px]"
                 >
                   {item.name}

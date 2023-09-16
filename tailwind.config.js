@@ -8,8 +8,12 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        darkBlack: "#262626",
+      },
       extend: {
         fontFamily: {
           Montserrat: ["Montserrat"],

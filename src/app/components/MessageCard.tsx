@@ -11,7 +11,7 @@ function MessageCard({ item }: { item: PageProps }) {
   const { date, message, name, initialName, color } = item;
 
   return (
-    <div className="bg-white  rounded-[20px] mt-6 p-8  flex flex-col gap-5 shadow-[0_3px_8px_rgb(0,0,0,0.1)] ">
+    <div className="bg-white dark:bg-[#333333]  dark:shadow-[0_2px_1px_3px_rgb(255,255,255,0.01)] rounded-[20px] mt-6 p-8  flex flex-col gap-5 shadow-[0_3px_8px_rgb(0,0,0,0.01)] ">
       <div className="flex justify-between items-center">
         <div
           className={` w-[30px] h-[30px] rounded-[10.7px] flex items-center justify-center text-white font-bold `}
@@ -27,13 +27,27 @@ function MessageCard({ item }: { item: PageProps }) {
           <h1 className="font-semibold  text-sm">{name}</h1>
           <h1 className="text-[#bdbdbd] text-xs ">{message}</h1>
         </div>
-        <Image
+        {/* <Image
           src="/assets/arrowright.svg"
           width={10}
           height={5}
           alt="arrow right"
-          className="cursor-pointer"
-        />
+          className=""
+        /> */}
+        <svg
+          width="10"
+          height="12"
+          viewBox="0 0 8 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.5 11L6.5 6L1.5 1"
+            stroke="#333333"
+            stroke-width="2"
+            className="dark:stroke-white cursor-pointer"
+          />
+        </svg>
       </div>
     </div>
   );

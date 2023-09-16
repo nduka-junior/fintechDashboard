@@ -13,7 +13,9 @@ function MainNav() {
         </div>
 
         <div className="flex items-center !mt-4">
-          <h1 className="font-[600] text-[#828282]">Last 30 days</h1>
+          <h1 className="font-[600] text-[#828282] dark:text-white">
+            Last 30 days
+          </h1>
 
           <div className="bg-[#FAF2FF] w-[30px] h-[30px] flex items-center justify-center rounded-[6px] ml-5">
             <Image
@@ -29,7 +31,7 @@ function MainNav() {
         <Chart />
         <div className="flex gap-6 justify-between  w-[85%] ">
           <div className="border-[1px] border-[#F2F2F2] rounded-2xl px-9 pb-7 pt-2 mt-6 w-full items-center justify-center">
-            <h1 className="font-bold text-lg text-black  mb-5 mt-4">
+            <h1 className="font-bold text-lg text-black  mb-5 mt-4 dark:text-white">
               Success rate
             </h1>
 
@@ -57,7 +59,7 @@ function MainNav() {
           </div>
 
           <div className="border-[1px] border-[#F2F2F2] rounded-2xl px-9 pb-7 pt-2 mt-6 w-full">
-            <h1 className="font-bold text-lg text-black  mb-5 mt-4">
+            <h1 className="font-bold text-lg text-black  mb-5 mt-4 dark:text-white">
               Payment issues
             </h1>
             <BarrChart />
@@ -65,15 +67,15 @@ function MainNav() {
             <div className="text-[orange]">
               Total number of errors: <strong>19</strong>
             </div>
-            <div className=" flex flex-col gap-3 mt-4">
+            <div className=" flex flex-col gap-3 mt-4 ">
               <div
                 className="
               flex gap-3"
               >
-                <div className="bg-[#FFBB4F] text-white w-[22px] flex items-center justify-center h-[22px] rounded-[8px] py-0 ">
+                <div className="bg-[#FFBB4F] text-white  w-[22px] flex items-center justify-center h-[22px] rounded-[8px] py-0 ">
                   a
                 </div>
-                <h1 className="text-[#828282] text-sm font-semibold">
+                <h1 className="text-[#828282] dark:!text-white  dark:!text-white text-sm font-semibold">
                   Customer errors
                 </h1>
               </div>
@@ -84,7 +86,7 @@ function MainNav() {
                 <div className="bg-[#FFDA93] text-white w-[22px] flex items-center justify-center h-[22px] rounded-[8px] py-0 ">
                   x
                 </div>
-                <h1 className="text-[#828282] text-sm font-semibold">
+                <h1 className="text-[#828282] dark:!text-white  text-sm font-semibold">
                   Fraud blocks
                 </h1>
               </div>
@@ -96,7 +98,7 @@ function MainNav() {
                 <div className="bg-[#FF7576] text-white w-[22px] flex items-center justify-center h-[22px] rounded-[8px] py-0 ">
                   o
                 </div>
-                <h1 className="text-[#828282] text-sm font-semibold">
+                <h1 className="text-[#828282] dark:!text-white  text-sm font-semibold">
                   Bank errors
                 </h1>
               </div>
@@ -107,7 +109,7 @@ function MainNav() {
                 <div className="bg-[#80E0E5] text-white w-[22px] flex items-center justify-center h-[22px] rounded-[8px] py-0 ">
                   n
                 </div>
-                <h1 className="text-[#828282] text-sm font-semibold">
+                <h1 className="text-[#828282] dark:!text-white  text-sm font-semibold">
                   System errors
                 </h1>
               </div>

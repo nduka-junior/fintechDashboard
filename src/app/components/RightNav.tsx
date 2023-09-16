@@ -63,7 +63,7 @@ function RightNav() {
   ];
 
   return (
-    <div className="col-span-3 bg-[#F9F9F9] px-7  pt-[50px] rounded-tl-[65px] overflow-y-auto h-[85vh]">
+    <div className="col-span-3 bg-[#F9F9F9] dark:bg-[#525252] px-7 pb-5  pt-[50px] rounded-tl-[65px] rounded-bl-[30px] overflow-y-auto h-[87.5vh]">
       <div className="flex justify-between items-center border-b-[1px] border-[#ededed] pb-3  text-[15px] ">
         <h1 className="text-[#bdbdbd]  font-medium">Stats</h1>
 

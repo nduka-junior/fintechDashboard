@@ -55,11 +55,11 @@ function LeftNav() {
   const DropDownName = "Payments";
 
   return (
-    <div className="col-span-2">
+    <div className="col-span-2   ">
       <DropDown data={payments} name={DropDownName} />
       <div>
         <DropDown data={commerce} name={"Commerce"} />
-      </div>{" "}
+      </div>
     </div>
   );
 }
