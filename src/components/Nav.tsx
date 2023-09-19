@@ -1,12 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-
+import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
+import { auth } from "../lib/firebase";
 import Image from "next/image";
-
+import Login from "./Login";
+import { signOut } from "firebase/auth";
+import { useToast } from "./ui/use-toast";
 function Nav() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { toast } = useToast();
+  const [user, loading, error]: AuthStateHook = useAuthState(auth);
 
   useEffect(() => {
     setMounted(true);
@@ -15,10 +20,28 @@ function Nav() {
   if (!mounted) {
     return null;
   }
-
+  const LogOut = () => {
+    // Log out the user
+    signOut(auth)
+      .then(() => {
+        toast({
+          description: "Logged out successfully",
+        });
+        // Sign-out successful.
+        console.log("User logged out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+        toast({
+          variant: "destructive",
+          description: "Error logging out",
+        });
+        console.error("Error logging out:", error);
+      });
+  };
 
   return (
-    <div className="grid  grid-cols-12 my-5 items-center pr-4">
+    <div className="grid  grid-cols-12 my-5 items-center pr-4 ">
       <div className="col-span-2">
         {/* <Image
           src="/assets/Payd.svg"
@@ -41,7 +64,7 @@ function Nav() {
           />
         </svg>
       </div>
-      <div className="col-span-8 flex items-center justify-start gap-9">
+      <div className="col-span-7 flex items-center justify-start gap-9">
         <div className="relative">
           <input
             type="text"
@@ -55,13 +78,36 @@ function Nav() {
         </div>
 
         <div>
+          {/* <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu> */}
           <label className="switch">
             <input
               type="checkbox"
               onClick={() => {
-
                 setTheme(
-                 theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'
+                  theme === "light"
+                    ? "dark"
+                    : theme === "dark"
+                    ? "system"
+                    : "light"
                 );
                 setTheme(theme === "light" ? "dark" : "light");
               }}
@@ -103,27 +149,37 @@ function Nav() {
           </svg>
         </div>
       </div>
-      <div className="col-span-2">
-        <div className=" flex gap-3 w-full rounded-xl border-[1px] border-[rgba(189, 189, 189, 0.2)] text-[#BBBBBB] text-[12px] items-center justify-start cursor-pointer dark:text-white">
-          <Image
-            height={100}
-            width={100}
-            src="/assets/user.png"
-            alt="user "
-            className="w-[56px] h-full object-contain "
-          />
-          <div>
-            <h1 className="font-medium ">Anddy’s Makeover</h1>
-            <h1 className="font-[300]">ID: 1234567</h1>
+
+      <div className="col-span-3 justify-end flex">
+        {user != null ? (
+          <div className="flex  items-center gap-4 ">
+            <div className=" flex gap-3 w-full rounded-xl border-[1px] border-[rgba(189, 189, 189, 0.2)] text-[#BBBBBB] text-[12px] items-center justify-start cursor-pointer dark:text-white w-full pr-4">
+              <Image
+                height={100}
+                width={100}
+                src={user.photoURL!}
+                alt="user "
+                className="w-[56px] h-full object-contain rounded-l-xl "
+              />
+              <div>
+                <h1 className="font-medium text-black dark:text-white ">
+                  {user.displayName}
+                </h1>
+                <h1 className="font-[300] text-black dark:text-white">
+                  ID: 1234567
+                </h1>
+              </div>
+            </div>
+            <div
+              className="flex border-[1px] py-3 px-5 rounded-[50px] border-[rgba(189, 189, 189, 0.2)] font-medium text-[grey] dark:border-white dark:text-white text-xs cursor-pointer"
+              onClick={LogOut}
+            >
+              <span>Logout</span>
+            </div>
           </div>
-          <Image
-            height={100}
-            width={100}
-            src="/assets/arrowdown.svg"
-            alt="down"
-            className="ml-2 stroke-[2px] w-[14px] "
-          />
-        </div>
+        ) : (
+          <Login />
+        )}
       </div>
     </div>
   );

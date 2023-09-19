@@ -34,6 +34,7 @@ function Chart() {
       setCurrentColor("black");
     }
   }, [theme]);
+ 
 
   const options = {
     responsive: true,

@@ -14,7 +14,7 @@ export const data = {
       borderColor: ["transparent", "transparent"],
       cutout: "65%",
 
-      borderWidth: 5,
+      borderWidth: 4,
     },
   ],
 };
@@ -25,8 +25,8 @@ const options = {
       display: false, // Hide the legend
     },
   },
-  cutout: 30, // Set the inner radius
-  aspectRatio: 1.4,
+  cutout: 20, // Set the inner radius
+  aspectRatio: 2,
 };
 
 function PieChart() {

@@ -24,7 +24,10 @@ function BarrChart() {
       setCurrentColor("black");
     }
   }, [theme]);
+ 
   const options = {
+    aspectRatio: 2,
+
     responsive: true,
     plugins: {
       ChartDataLabels,
@@ -38,8 +41,8 @@ function BarrChart() {
         font: {
           weight: " 300",
         },
-        ticks:{
-          color :currentColor,
+        ticks: {
+          color: currentColor,
         },
 
         border: {
@@ -47,12 +50,10 @@ function BarrChart() {
         },
         grid: {
           display: false,
-
         },
       },
       y: {
         display: false,
- 
       },
     },
   };
