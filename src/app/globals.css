@@ -72,3 +72,39 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* Variables */
+:root {
+  --base-line-height: 20px;
+  --white: rgb(255, 255, 255);
+  --brand: #307FE2;
+  --off: rgba(var(--white), 0.2);
+  --spin-duration: 0.5s;
+}
+
+/* Keyframes */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* HTML and Body */
+
+/* Loading Spinner */
+.loading {
+  border-radius: 50%;
+  width: var(--base-line-height);
+  height: var(--base-line-height);
+  border: 0.25rem solid var(--off);
+  border-top-color: var(--brand);
+  animation: spin var(--spin-duration) infinite linear;
+}
+
+.loading--double {
+  border-style: double;
+  border-width: 0.5rem;
+}

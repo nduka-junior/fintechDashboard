@@ -20,6 +20,7 @@ function MessageCard({ item }: { item: PageProps }) {
     };
     return date.toLocaleDateString("en-US", options);
   }
+  
 
   return (
     <div className="bg-white dark:bg-[#333333]  dark:shadow-[0_2px_1px_3px_rgb(255,255,255,0.01)] rounded-[20px] mt-6 p-8  flex flex-col gap-5 shadow-[0_3px_8px_rgb(0,0,0,0.01)] ">

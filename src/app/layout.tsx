@@ -25,8 +25,14 @@ export default function RootLayout({
           enableSystem={true}
           storageKey="theme"
         >
-          {children}
-          <Toaster />
+          <div className="hidden xl:block">
+            {children} <Toaster />
+          </div>
+          <div className="text-2xl flex justify-center items-center h-screen leading-7 tracking-widest px-10 max-sm:text-xl">
+            {" "}
+            Page is only Viewable on 💻 app, <br /> Kindly use your 💻 to view
+            the page
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -22,7 +22,9 @@ interface Message {
 }
 function RightNav() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
+    setLoading(true);
     const messagesRef = ref(database, "messages");
     const queryRef = query(messagesRef, orderByValue());
     // Create a real-time listener for changes in the "messages" node
@@ -31,7 +33,11 @@ function RightNav() {
         const data = snapshot.val();
         const messagesArray: Message[] = Object.values(data);
         setMessages(messagesArray.reverse());
+
+
+        setLoading(false);
       } else {
+        setLoading(false);
         setMessages([]);
       }
     });
@@ -41,35 +47,6 @@ function RightNav() {
       unsubscribe();
     };
   }, [auth]);
-
-  // useEffect(() => {
-  //   const messagesRef = ref(database, "messages");
-
-  //   // Example 1: Query all messages
-  //   const allMessagesQuery = query(messagesRef);
-
-  //   // Example 2: Query messages with a specific condition (e.g., orderByChild and equalTo)
-  //   const specificMessagesQuery = query(
-  //     messagesRef,
-  //     orderByChild("date") // Order the results by the "timestamp" child
-  //   );
-
-  //   // Example 3: Fetch data from the database based on the query
-  //   get(allMessagesQuery)
-  //     .then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         const data = snapshot.val();
-  //         const messagesArray: Message[] = Object.values(data);
-  //         setMessages(messagesArray);
-  //         console.log("All messages:", data);
-  //       } else {
-  //         console.log("No data available");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, [auth, messages]);
 
   return (
     <div className="col-span-3 sticky bg-[#F9F9F9] dark:bg-[#525252] px-7 pb-5  pt-[50px] rounded-tl-[65px] rounded-bl-[30px] overflow-y-auto h-[87.5vh]">
@@ -84,9 +61,25 @@ function RightNav() {
           </h1>
         </div>
       </div>
-      {messages.map((item, index) => {
-        return <MessageCard key={index} item={item} />;
-      })}
+      {loading && (
+        <div className="flex items-center justify-center h-full">
+          <div className="w-14 h-14 border-t-2 border-white border-dashed rounded-full animate-spin"></div>
+        </div>
+      )}
+      {loading == false &&
+        messages.length > 0 &&
+        messages.map((item, index) => {
+          return <MessageCard key={index} item={item} />;
+        })}
+      {loading == false && messages.length == 0 && (
+        <div className="text-lg font-medium flex  items-center  h-full justify-center tracking-widest  text-center w-full">
+          <div>
+            Message box empty,
+            <br />
+            type in a message 👆🏽
+          </div>
+        </div>
+      )}
     </div>
   );
 }
