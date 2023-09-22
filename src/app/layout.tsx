@@ -29,7 +29,6 @@ export default function RootLayout({
             {children} <Toaster />
           </div>
           <div className="text-2xl flex justify-center items-center h-screen leading-7 tracking-widest px-10 max-sm:text-xl">
-            {" "}
             Page is only Viewable on 💻 app, <br /> Kindly use your 💻 to view
             the page
           </div>
